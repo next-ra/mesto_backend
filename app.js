@@ -6,7 +6,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', require('./routes/users'));
+
 app.use('/cards', require('./routes/cards'));
+
+app.use('*', require('./routes/error'));
 
 const PORT = process.env.PORT || 3000;
 

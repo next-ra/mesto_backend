@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
     res.json(users.filter(user => user._id === req.params.id));
   } else {
     res
-      .status(400)
+      .status(404)
       .json({ msg: `Нет пользователя с таким id ${req.params.id}` });
   }
 });
