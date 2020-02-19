@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "node app",
-    "dev": "nodemon app"
+    "dev": "nodemon app",
+    "lint": "eslint --ext=.js ./",
+    "lint-fix": "eslint --ext=.js ./ --fix"
   },
   "author": "Denis Luchnikov",
   "license": "ISC",
