@@ -6,6 +6,7 @@ const users = path.join(__dirname, '../data/users.json');
 
 router.get('/', (req, res) => {
   const fileReader = fs.createReadStream(users, 'utf8');
+  res.set('Content-Type', 'application/json');
   fileReader.pipe(res);
 });
 
