@@ -1,6 +1,6 @@
 {
-  "name": "12",
-  "version": "0.0.1",
+  "name": "backend_mesto_13",
+  "version": "0.0.3",
   "description": "",
   "main": "app.js",
   "scripts": {
@@ -12,7 +12,9 @@
   "author": "Denis Luchnikov",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongoose": "^5.9.5",
+    "validator": "^13.0.0"
   },
   "devDependencies": {
     "eslint": "^6.8.0",

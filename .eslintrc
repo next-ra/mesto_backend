@@ -4,12 +4,8 @@
   "rules": {
     "prettier/prettier": "warn",
     "no-unused-vars": "warn",
-    "linebreak-style": "off",
-    "import/extensions": "off",
-    "import/no-cycle": "off",
     "no-console": "off",
-    "radix": "warn",
-    "no-underscore-dangle": "off"
+    "no-underscore-dangle": ["error", { "allow": ["_id"] }]
   },
 
   "env": {
