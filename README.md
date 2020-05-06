@@ -34,50 +34,55 @@ npm i
 npm run dev
 ```
 
-#### Реализовано:
+### Реализовано:
 
-### Получить список всех пользователей
+#### Получить список всех пользователей
 
-GET http://localhost:3000/users
+**GET** /users  
 
-### Создать пользователя
+#### Создать пользователя 
 
-POST http://localhost:3000/users
-Content-Type: application/json
+**POST** /users
+    
+*Content-Type: application/json*
 
+```
 {
-"name": "Имя пользователя",
-"about": "Поле о себе",
+"name": "Zak De La Rocha",
+"about": "Musician",
 "avatar": "https://praktikum.yandex.ru/"
 }
+```
+#### Поиск пользователя по ID
 
-### Поиск пользователя по ID
+**GET** /users/:id
 
-GET http://localhost:3000/users/5eb20071c5bfca31c416c17a
+#### Обновить данные пользователя
 
-### Обновить данные пользователя
+**PATCH** 
+users/me
 
-PATCH http://localhost:3000/users/5eb20071c5bfca31c416c17a
-Content-Type: application/json
-
+*Content-Type: application/json*
+```
 {
-"name": "Обновить имя",
-"about": "Обновить информацию о себе"
+"name": "Hermann Hesse",
+"about": "Writer"
 }
+```
+#### Обновить аватар пользователя 
 
-### Обновить аватар пользователя по ID
+**PATCH**  /users/me/avatar
 
-PATCH http://localhost:3000/users/5eb20071c5bfca31c416c17a/avatar
-Content-Type: application/json
-
+*Content-Type: application/json*
+```
 {
-"avatar" : "https://ya.ru"
+"avatar" : "https://yandex.ru"
 }
+```
+#### Удалить пользователя по ID
 
-### Удалить пользователя по ID
+**DELETE** /users/:id
 
-DELETE http://localhost:3000/users/5eb20071c5bfca31c416c17a
+#### Ошибка 404
 
-### Ошибка 404
-
-GET http://localhost:3000/abc_xyz
+**ALL** /abc_xyz
