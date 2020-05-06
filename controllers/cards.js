@@ -25,5 +25,35 @@ module.exports = {
         } else res.send({ message: 'Карточка удалена', data: card });
       })
       .catch(err => res.send(err));
+  },
+  likeCard: (req, res, next) => {
+    Card.findByIdAndUpdate(
+      req.params.cardId,
+      {
+        $addToSet: { likes: req.user._id }
+      },
+      { new: true }
+    )
+      .then(card => {
+        if (!card) {
+          next();
+        } else res.send({ message: 'лайк поставлен', data: card });
+      })
+      .catch(err => res.send(err));
+  },
+  dislikeCard: (req, res, next) => {
+    Card.findByIdAndUpdate(
+      req.params.cardId,
+      {
+        $pull: { likes: req.user._id }
+      },
+      { new: true }
+    )
+      .then(card => {
+        if (!card) {
+          next();
+        } else res.json({ message: 'Лайк убран', data: card });
+      })
+      .catch(err => res.send(err));
   }
 };
