@@ -21,7 +21,7 @@ module.exports = {
     User.findById(req.params.userId)
       .then(user => {
         if (!user) {
-          res.status(404).send({ message: 'Пользователь не найден' });
+          next();
         } else res.json({ data: user });
       })
       .catch(err => res.send(err));

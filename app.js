@@ -8,6 +8,13 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use((req, res, next) => {
+  req.user = {
+    _id: '5eae3b91d4152420f8e66451'
+  };
+
+  next();
+});
 app.use(routes);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
