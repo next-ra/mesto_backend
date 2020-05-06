@@ -41,7 +41,7 @@ module.exports = {
   },
   updateUser: (req, res, next) => {
     User.findByIdAndUpdate(
-      req.params.userId,
+      req.user._id,
       {
         name: req.body.name,
         about: req.body.about
@@ -54,11 +54,11 @@ module.exports = {
           next();
         } else res.send({ message: 'Пользователь обновлен', data: user });
       })
-      .catch(err => res.send(err));
+      .catch(next);
   },
   updateAvatar: (req, res, next) => {
     User.findByIdAndUpdate(
-      req.params.userId,
+      req.user._id,
       { avatar: req.body.avatar },
       { runValidators: true, new: true }
     )
@@ -67,6 +67,6 @@ module.exports = {
           next();
         } else res.send({ message: 'Аватар обновлен', data: user });
       })
-      .catch(err => res.send(err));
+      .catch(next);
   }
 };
