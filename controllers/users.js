@@ -8,23 +8,24 @@ module.exports = {
       avatar: req.body.avatar
     })
       .then(user => res.status(201).send({ data: user }))
-      .catch(err => res.send(err));
+      .catch(next);
   },
   getUsers: (req, res, next) => {
     User.find({})
       .then(users =>
         res.send({ 'количество пользователей': users.length, data: users })
       )
-      .catch(err => res.send(err));
+      .catch(next);
   },
   getUserById: (req, res, next) => {
     User.findById(req.params.userId)
+      .orFail()
       .then(user => {
         if (!user) {
           next();
         } else res.json({ data: user });
       })
-      .catch(err => res.send(err));
+      .catch(next);
   },
   deleteUser: (req, res, next) => {
     User.findByIdAndRemove(req.params.userId)

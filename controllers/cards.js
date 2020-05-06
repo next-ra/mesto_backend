@@ -8,20 +8,20 @@ module.exports = {
       owner: req.user._id
     })
       .then(card => res.status(201).send({ data: card }))
-      .catch(err => res.send(err));
+      .catch(next);
   },
   getCards: (req, res, next) => {
     Card.find({})
       .then(cards =>
         res.send({ 'количество карточек': cards.length, data: cards })
       )
-      .catch(err => res.send(err));
+      .catch(next);
   },
   deleteCard: (req, res, next) => {
     Card.findByIdAndRemove(req.params.cardId)
       .then(card => {
         if (!card) {
-          next();
+          res.status(400).send({ message: 'нельзя удалить то, чего нет' });
         } else res.send({ message: 'Карточка удалена', data: card });
       })
       .catch(err => res.send(err));
@@ -39,7 +39,7 @@ module.exports = {
           next();
         } else res.send({ message: 'лайк поставлен', data: card });
       })
-      .catch(err => res.send(err));
+      .catch(next);
   },
   dislikeCard: (req, res, next) => {
     Card.findByIdAndUpdate(
@@ -54,6 +54,6 @@ module.exports = {
           next();
         } else res.json({ message: 'Лайк убран', data: card });
       })
-      .catch(err => res.send(err));
+      .catch(next);
   }
 };

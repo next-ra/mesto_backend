@@ -14,7 +14,7 @@
 git clone https://github.com/next-ra/project12_backend.git
 ```
 
-Установите зависимсости:
+Установите зависимости:
 
 ```
 npm i
@@ -36,14 +36,48 @@ npm run dev
 
 #### Реализовано:
 
-- В ответ на запрос GET localhost:3000 сервер вернет фронтенд проекта [Место](https://github.com/next-ra/prj11)
+### Получить список всех пользователей
 
-- В ответ на запрос GET localhost:3000/users сервер вернёт JSON-объект всех пользователей
+GET http://localhost:3000/users
 
-- В ответ на запрос GET localhost:3000/cards сервер вернёт JSON-объект всех карточек
+### Создать пользователя
 
-- В ответ на запрос GET localhost:3000/users/8340d0ec33270a25f2413b69, сервер вернёт JSON-объект пользователя с переданным после /users идентификатором
+POST http://localhost:3000/users
+Content-Type: application/json
 
-- Если пользователя с запрошенным идентификатором нет, API возвращает 404 статус ответа и JSON: { "message": "Нет пользователя с таким id" }
+{
+"name": "Имя пользователя",
+"about": "Поле о себе",
+"avatar": "https://praktikum.yandex.ru/"
+}
 
-- При запросе на несуществующий адрес, API возвращает 404 статус ответа и JSON: { "message": "Запрашиваемый ресурс не найден" }
+### Поиск пользователя по ID
+
+GET http://localhost:3000/users/5eb20071c5bfca31c416c17a
+
+### Обновить данные пользователя
+
+PATCH http://localhost:3000/users/5eb20071c5bfca31c416c17a
+Content-Type: application/json
+
+{
+"name": "Обновить имя",
+"about": "Обновить информацию о себе"
+}
+
+### Обновить аватар пользователя по ID
+
+PATCH http://localhost:3000/users/5eb20071c5bfca31c416c17a/avatar
+Content-Type: application/json
+
+{
+"avatar" : "https://ya.ru"
+}
+
+### Удалить пользователя по ID
+
+DELETE http://localhost:3000/users/5eb20071c5bfca31c416c17a
+
+### Ошибка 404
+
+GET http://localhost:3000/abc_xyz
