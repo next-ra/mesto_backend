@@ -53,9 +53,26 @@ npm run dev
 "avatar": "https://praktikum.yandex.ru/"
 }
 ```
+
 #### Поиск пользователя по ID
 
 **GET** /users/:id
+
+* **Пример удачного запроса:**
+
+  * **Code:** 200 <br />
+    **Content:** 
+`{ 
+    id : 12, 
+    name : "Zak De La Rocha", 
+    about : "Musician", 
+    avatar: "https://praktikum.yandex.ru/"
+}`
+ 
+* **Ошибка запроса:**
+
+  * **Code:** 404 NOT FOUND <br />
+    **Content:** `{ error : "Такого пользователя не существует" }`
 
 #### Обновить данные пользователя
 
