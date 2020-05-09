@@ -6,14 +6,21 @@ module.exports = {
     User.create({
       name: req.body.name,
       about: req.body.about,
-      avatar: req.body.avatar
+      avatar: req.body.avatar,
+      email: req.body.email,
+      password: req.body.password
     })
       .then(user => res.status(201).send({ data: user }))
       .catch(next);
   },
   getUsers: (req, res, next) => {
     User.find({})
-      .then(users => res.send({ data: users }))
+      .then(users => {
+        if (users.length === 0) {
+          res.send({ message: messages.users.emptyDb });
+        } else res.send({ data: users });
+      })
+
       .catch(next);
   },
   getUserById: (req, res, next) => {
