@@ -19,11 +19,6 @@ module.exports = {
   getUserById: (req, res, next) => {
     User.findById(req.params.userId)
       .orFail()
-      .then(user => {
-        if (!user) {
-          next();
-        } else res.json({ data: user });
-      })
       .catch(next);
   },
   deleteUser: (req, res, next) => {

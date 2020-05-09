@@ -20,7 +20,7 @@ module.exports = {
       .then(cards => res.send({ data: cards }))
       .catch(next);
   },
-  deleteCard: (req, res, next) => {
+  deleteCard: (req, res) => {
     Card.findByIdAndRemove(req.params.cardId)
       .then(card => {
         if (!card) {
