@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
   },
   link: {
     type: String,
-    required: true,
+    required: [true, 'обязательное поле'],
     validate: {
       validator: link => validator.isURL(link),
       message: 'Указана неверная ссылка'

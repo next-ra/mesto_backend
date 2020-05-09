@@ -1,4 +1,5 @@
 const Card = require('../models/card');
+const { messages } = require('../libs/messages');
 
 module.exports = {
   createCard: (req, res, next) => {
@@ -10,23 +11,21 @@ module.exports = {
       .then(card =>
         res
           .status(201)
-          .send({ message: 'карточка успешно создана', data: card })
+          .send({ message: messages.cards.cardCreated, data: card })
       )
       .catch(next);
   },
   getCards: (req, res, next) => {
     Card.find({})
-      .then(cards =>
-        res.send({ 'количество карточек': cards.length, data: cards })
-      )
+      .then(cards => res.send({ data: cards }))
       .catch(next);
   },
   deleteCard: (req, res, next) => {
     Card.findByIdAndRemove(req.params.cardId)
       .then(card => {
         if (!card) {
-          res.status(400).send({ message: 'нельзя удалить то, чего нет' });
-        } else res.send({ message: 'Карточка удалена', data: card });
+          res.status(400).send({ message: messages.cards.cardNotFound });
+        } else res.send({ message: messages.cards.cardDeleted, data: card });
       })
       .catch(err => res.send(err));
   },
@@ -41,7 +40,7 @@ module.exports = {
       .then(card => {
         if (!card) {
           next();
-        } else res.send({ message: 'лайк поставлен', data: card });
+        } else res.send({ message: messages.cards.like, data: card });
       })
       .catch(next);
   },
@@ -56,7 +55,7 @@ module.exports = {
       .then(card => {
         if (!card) {
           next();
-        } else res.json({ message: 'Лайк убран', data: card });
+        } else res.json({ message: messages.cards.dislike, data: card });
       })
       .catch(next);
   }

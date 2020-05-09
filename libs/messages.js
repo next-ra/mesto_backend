@@ -10,9 +10,12 @@ module.exports = {
     users: {
       userDeleted: `пользователь удален`,
       userUpdated: 'пользователь обновлен',
-      avatarUpdated: 'аватар обновлен'
+      avatarUpdated: 'аватар обновлен',
+      notFound: 'пользователь с таким id не найден'
     },
 
-    notFound: 'запрашиваемый ресурс не найден'
+    notFound: 'запрашиваемый ресурс не найден',
+    wrongIdFormat: 'неправильный формат id',
+    serverErr: 'ошибка сервера'
   }
 };
