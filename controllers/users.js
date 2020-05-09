@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const { messages } = require('../libs/messages');
 
 module.exports = {
   createUser: (req, res, next) => {
@@ -12,9 +13,7 @@ module.exports = {
   },
   getUsers: (req, res, next) => {
     User.find({})
-      .then(users =>
-        res.send({ 'количество пользователей': users.length, data: users })
-      )
+      .then(users => res.send({ data: users }))
       .catch(next);
   },
   getUserById: (req, res, next) => {
@@ -34,7 +33,7 @@ module.exports = {
           next();
         } else
           res.json({
-            message: `Пользователь с ID: ${user._id} успешно удален`
+            message: messages.users.userDeleted
           });
       })
       .catch(err => res.send(err));
@@ -52,7 +51,7 @@ module.exports = {
       .then(user => {
         if (!user) {
           next();
-        } else res.send({ message: 'Пользователь обновлен', data: user });
+        } else res.send({ message: messages.users.userUpdated, data: user });
       })
       .catch(next);
   },
@@ -65,7 +64,7 @@ module.exports = {
       .then(user => {
         if (!user) {
           next();
-        } else res.send({ message: 'Аватар обновлен', data: user });
+        } else res.send({ message: messages.users.avatarUpdated, data: user });
       })
       .catch(next);
   }

@@ -7,7 +7,11 @@ module.exports = {
       link: req.body.link,
       owner: req.user._id
     })
-      .then(card => res.status(201).send({ data: card }))
+      .then(card =>
+        res
+          .status(201)
+          .send({ message: 'карточка успешно создана', data: card })
+      )
       .catch(next);
   },
   getCards: (req, res, next) => {

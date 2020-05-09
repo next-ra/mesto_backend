@@ -10,19 +10,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   req.user = {
-    _id: '5eaf81db66d6e246e43f2fe7'
+    _id: '5eb021965f5a7b3f4c79c075'
   };
 
   next();
 });
 app.use(routes);
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
+mongoose
+  .connect('mongodb://localhost:27017/mestodb', {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('База данных подключена'))
+  .catch(() => console.log('Ошибка подключения'));
 
 app.listen(PORT, () => {
   console.log('Server is on');
