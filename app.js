@@ -26,5 +26,5 @@ mongoose
   .catch(() => console.log('Ошибка подключения к базе данных'));
 
 app.listen(PORT, () => {
-  console.log('Server is on');
+  console.log(`Сервер работает на ${PORT} порту`);
 });
