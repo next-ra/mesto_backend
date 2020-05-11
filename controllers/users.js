@@ -93,7 +93,6 @@ module.exports = {
       },
       { runValidators: true, new: true }
     )
-
       .then(user => {
         if (!user) {
           next();
