@@ -7,8 +7,9 @@ const {
   dislikeCard
 } = require('../controllers/cards');
 const { checkOwner } = require('../middlewares/checkOwner');
+const { createCardValidation } = require('../middlewares/celebrate');
 
-router.post('/', createCard);
+router.post('/', createCardValidation, createCard);
 router.get('/', getCards);
 router.delete('/:cardId', checkOwner, deleteCard);
 router.put('/:cardId/likes', likeCard);

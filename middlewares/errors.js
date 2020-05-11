@@ -4,9 +4,9 @@ module.exports = {
   // eslint-disable-next-line no-unused-vars
   errors: (err, req, res, next) => {
     switch (err.name) {
-      case 'Error':
-        res.status(401).send({ message: messages.users.wrongAuth });
-        break;
+      // case 'Error':
+      //   res.status(401).send({ message: messages.users.wrongAuth });
+      //   break;
 
       case 'CastError':
         res.status(400).send({ message: messages.wrongIdFormat });

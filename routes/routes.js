@@ -5,11 +5,15 @@ const cards = require('./cards');
 const { errors, error404 } = require('../middlewares/errors');
 const { createUser, login } = require('../controllers/users');
 const auth = require('../middlewares/auth');
+const {
+  createUserValidation,
+  loginValidation
+} = require('../middlewares/celebrate');
 
 router.use(cookieParser());
 
-router.post('/signup', createUser);
-router.post('/signin', login);
+router.post('/signup', createUserValidation, createUser);
+router.post('/signin', loginValidation, login);
 router.use(auth);
 router.use('/users', users);
 router.use('/cards', cards);

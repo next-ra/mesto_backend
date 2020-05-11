@@ -4,32 +4,28 @@ const User = require('../models/user');
 
 const config = require('../config');
 const { messages } = require('../libs/messages');
-const TooShort = require('../libs/tooShort');
 
 const createUser = (req, res, next) => {
-  if (req.body.password.length < 8) {
-    throw new TooShort(messages.users.tooShortPass);
-  } else
-    bcrypt
-      .hash(req.body.password, 10)
-      .then(hash =>
-        User.create({
-          name: req.body.name,
-          about: req.body.about,
-          avatar: req.body.avatar,
-          email: req.body.email,
-          password: hash
-        })
-      )
-      .then(user =>
-        res.status(201).send({
-          message: messages.users.userCreated,
-          _id: user._id,
-          name: user.name,
-          email: user.email
-        })
-      )
-      .catch(next);
+  bcrypt
+    .hash(req.body.password, 10)
+    .then(hash =>
+      User.create({
+        name: req.body.name,
+        about: req.body.about,
+        avatar: req.body.avatar,
+        email: req.body.email,
+        password: hash
+      })
+    )
+    .then(user =>
+      res.status(201).send({
+        message: messages.users.userCreated,
+        _id: user._id,
+        name: user.name,
+        email: user.email
+      })
+    )
+    .catch(next);
 };
 
 const login = (req, res, next) => {

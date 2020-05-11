@@ -13,8 +13,6 @@ module.exports = (req, res, next) => {
   } catch (err) {
     return error401(res);
   }
-
   req.user = payload;
-  console.log(config.JWT_SECRET);
   return next();
 };
