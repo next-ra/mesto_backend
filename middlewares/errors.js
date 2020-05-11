@@ -1,21 +1,11 @@
 const { messages } = require('../libs/messages');
 
 module.exports = {
+  // eslint-disable-next-line no-unused-vars
   errors: (err, req, res, next) => {
-    // if (err.name === 'CastError') {
-    //   res.status(400).send({ message: messages.wrongIdFormat });
-    // } else if (err.name === 'DocumentNotFoundError') {
-    //   res.status(404).send({ message: messages.users.notFound });
-    // } else if (err.name === 'ValidationError') {
-    //   res.status(400).send({ message: err.message });
-    // } else if (err.name === 'MongoError') {
-    //   res.status(403).send({ message: messages.dupEmail });
-    // } else if (err.name === 'Error') {
-    //   res.status(403).send({ message: messages.users.wrongAuth });
-    // } else res.status(500).send({ message: messages.serverErr });
     switch (err.name) {
       case 'Error':
-        res.status(403).send({ message: messages.users.wrongAuth });
+        res.status(401).send({ message: messages.users.wrongAuth });
         break;
 
       case 'CastError':
@@ -35,7 +25,9 @@ module.exports = {
         break;
 
       default:
-        res.status(500).send({ message: messages.serverErr });
+        res
+          .status(err.status || 500)
+          .send({ message: err.message || 'ошибка сервера' });
     }
   },
   error404: (req, res, next) => {

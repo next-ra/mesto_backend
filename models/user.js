@@ -36,7 +36,8 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'обязательное поле'],
-    minlength: 8
+    minlength: 8,
+    select: false
   }
 });
 userSchema.statics.findUserByCredentials = function(email, password) {
