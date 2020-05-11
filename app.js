@@ -3,20 +3,16 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
+const config = require('./config');
 
-const {
-  PORT = 3000,
-  MONGO_DB = 'mongodb://localhost:27017/mestodb'
-} = process.env;
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(routes);
-
 mongoose
-  .connect(MONGO_DB, {
+  .connect(config.MONGODB, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
@@ -25,6 +21,7 @@ mongoose
   .then(() => console.log('База данных подключена'))
   .catch(() => console.log('Ошибка подключения к базе данных'));
 
-app.listen(PORT, () => {
-  console.log(`Сервер работает на ${PORT} порту`);
+app.listen(config.PORT, () => {
+  console.log(`Сервер работает на ${config.PORT} порту`);
+  console.log(process.env.NODE_ENV);
 });

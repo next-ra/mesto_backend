@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { error401 } = require('../middlewares/errors');
+const config = require('../config');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports = (req, res, next) => {
   const { jwt: token } = req.cookies;
   if (!token) {
@@ -9,15 +9,12 @@ module.exports = (req, res, next) => {
   }
   let payload;
   try {
-    payload = jwt.verify(
-      token,
-      NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret'
-    );
+    payload = jwt.verify(token, config.JWT_SECRET);
   } catch (err) {
     return error401(res);
   }
 
   req.user = payload;
-
+  console.log(config.JWT_SECRET);
   return next();
 };
