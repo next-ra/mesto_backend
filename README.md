@@ -1,8 +1,13 @@
-### Проектная работа 13
+### Проектная работа 14
+
+### v0.1.0
 
 ## Сервер для проекта [Место](https://github.com/next-ra/prj11)
 
-### v0.0.3
+### Используемые технологии:
+
+JS, GIT, node.js, express.js, mongoose, mongoDB
+
 
 #### Начало работы:
 
@@ -34,15 +39,11 @@ npm i
 npm run dev
 ```
 
-### Реализовано:
-
-#### Получить список всех пользователей
-
-**GET** /users  
+### Реализовано: 
 
 #### Создать пользователя 
 
-**POST** /users
+**POST** /signup
     
 *Content-Type: application/json*
 
@@ -50,9 +51,26 @@ npm run dev
 {
 "name": "Zak De La Rocha",
 "about": "Musician",
-"avatar": "https://praktikum.yandex.ru/"
+"avatar": "https://praktikum.yandex.ru/",
+"email": "Zak@yandex.ru",
+"password": "password123"
 }
 ```
+#### Авторизация пользователя
+
+**POST** /signin
+
+*Content-Type: application/json*
+
+``` 
+{
+  "email": "Zak@yandex.ru",
+  "password": "password123"
+}
+```
+#### Получить список всех пользователей
+
+**GET** /users
 
 #### Поиск пользователя по ID
 
@@ -66,7 +84,9 @@ npm run dev
     id : 12, 
     name : "Zak De La Rocha", 
     about : "Musician", 
-    avatar: "https://praktikum.yandex.ru/"
+    avatar: "https://praktikum.yandex.ru/",
+    email: "Zak@yandex.ru",
+    password: "password123"
 }`
  
 * **Ошибка запроса:**
