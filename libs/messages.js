@@ -5,7 +5,8 @@ module.exports = {
       dislike: 'лайк убран',
       cardNotFound: 'нельзя удалить то, чего нет',
       cardDeleted: 'карточка удалена',
-      cardCreated: 'карточка создана'
+      cardCreated: 'карточка создана',
+      cardFailDelete: 'вы не можете удалить чужую карточку'
     },
     users: {
       userDeleted: `пользователь удален`,
