@@ -1,29 +1,30 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const routes = require('./routes/routes');
+const config = require('./config');
+const limiter = require('./middlewares/limiter');
 
-const { PORT = 3000 } = process.env;
 const app = express();
-
+app.use(helmet);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use((req, res, next) => {
-  req.user = {
-    _id: '5eaf81db66d6e246e43f2fe7'
-  };
+app.use(limiter);
 
-  next();
-});
 app.use(routes);
+mongoose
+  .connect(config.MONGODB, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true
+  })
+  .then(() => console.log('База данных подключена'))
+  .catch(() => console.log('Ошибка подключения к базе данных'));
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-  useUnifiedTopology: true
-});
-
-app.listen(PORT, () => {
-  console.log('Server is on');
+app.listen(config.PORT, () => {
+  console.log(`Сервер работает на ${config.PORT} порту`);
+  console.log(process.env.NODE_ENV);
 });
