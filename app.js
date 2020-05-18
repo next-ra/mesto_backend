@@ -8,7 +8,7 @@ const config = require('./config');
 const limiter = require('./middlewares/limiter');
 
 const app = express();
-app.use(helmet);
+app.use(helmet());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(limiter);
@@ -19,7 +19,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   })
   .then(() => console.log('База данных подключена'))
   .catch(() => console.log('Ошибка подключения к базе данных'));
