@@ -19,12 +19,12 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
   .then(() => console.log('База данных подключена'))
   .catch(() => console.log('Ошибка подключения к базе данных'));
 
 app.listen(config.PORT, () => {
   console.log(`Сервер работает на ${config.PORT} порту`);
-  console.log(process.env.NODE_ENV);
+  console.log('NODE_ENV:', process.env.NODE_ENV);
 });

@@ -12,6 +12,13 @@ const {
 
 router.use(cookieParser());
 
+router.get('/crash-test', () => {
+  setTimeout(() => {
+    console.log('сервер упал');
+    throw new Error('Сервер сейчас упадёт');
+  }, 4000);
+});
+
 router.post('/signup', createUserValidation, createUser);
 router.post('/signin', loginValidation, login);
 router.use(auth);
