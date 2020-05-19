@@ -19,15 +19,14 @@ const getCards = (req, res, next) => {
     .catch(next);
 };
 
-const deleteCard = (req, res) => {
+const deleteCard = (req, res, next) => {
   Card.findByIdAndRemove(req.params.cardId)
     .then(card => {
-      if (!card) {
-        res.status(400).send({ message: messages.cards.cardNotFound });
-      } else res.send({ message: messages.cards.cardDeleted, data: card });
+      res.send({ message: messages.cards.cardDeleted, data: card });
     })
-    .catch(err => res.send(err));
+    .catch(next);
 };
+
 const likeCard = (req, res, next) => {
   Card.findByIdAndUpdate(
     req.params.cardId,

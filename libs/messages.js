@@ -3,7 +3,7 @@ module.exports = {
     cards: {
       like: 'лайк поставлен',
       dislike: 'лайк убран',
-      cardNotFound: 'нельзя удалить то, чего нет',
+      cardNotFound: 'карточка с таким id не найдена',
       cardDeleted: 'карточка удалена',
       cardCreated: 'карточка создана',
       cardFailDelete: 'вы не можете удалить чужую карточку'
