@@ -9,6 +9,7 @@ const {
   createUserValidation,
   loginValidation
 } = require('../middlewares/celebrate');
+const { requestLogger, errorLogger } = require('../middlewares/logger');
 
 router.use(cookieParser());
 
@@ -18,12 +19,13 @@ router.get('/crash-test', () => {
     throw new Error('Сервер сейчас упадёт');
   }, 4000);
 });
-
+router.use(requestLogger);
 router.post('/signup', createUserValidation, createUser);
 router.post('/signin', loginValidation, login);
 router.use(auth);
 router.use('/users', users);
 router.use('/cards', cards);
+router.use(errorLogger);
 router.use('/', errors);
 router.use('/*', error404);
 module.exports = router;
