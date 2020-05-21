@@ -2,7 +2,8 @@ const router = require('express').Router();
 const cookieParser = require('cookie-parser');
 const users = require('./users');
 const cards = require('./cards');
-const { errors, error404 } = require('../middlewares/errorsHandler');
+const { errors } = require('../middlewares/errorsHandler');
+const { show404 } = require('../middlewares/show404');
 const { createUser, login } = require('../controllers/users');
 const auth = require('../middlewares/auth');
 const {
@@ -26,6 +27,7 @@ router.use(auth);
 router.use('/users', users);
 router.use('/cards', cards);
 router.use(errorLogger);
+router.use('/*', show404);
 router.use('/', errors);
-router.use('/*', error404);
+
 module.exports = router;

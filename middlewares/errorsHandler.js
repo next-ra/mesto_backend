@@ -9,7 +9,7 @@ module.exports = {
         break;
 
       case 'DocumentNotFoundError':
-        res.status(404).send({ message: usersRes.users.notFound });
+        res.status(404).send({ message: usersRes.notFound });
         break;
 
       case 'ValidationError':
@@ -25,12 +25,5 @@ module.exports = {
           .status(err.status || 500)
           .send({ message: err.message || 'ошибка сервера' });
     }
-  },
-  error404: (req, res, next) => {
-    res.status(404).json({ message: othersRes.notFound });
-    next();
-  },
-  error401: res => {
-    res.status(401).send({ message: usersRes.users.needAuth });
   }
 };
