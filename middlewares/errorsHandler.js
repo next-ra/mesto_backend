@@ -12,7 +12,7 @@ module.exports = {
         res.status(404).send({ message: usersRes.notFound });
         break;
 
-      case 'MongoError':
+      case 'ValidationError':
         res.status(403).send({ message: othersRes.dupEmail });
         break;
 
