@@ -1,4 +1,7 @@
 const { celebrate, Joi, Segments } = require('celebrate');
+const { regex } = require('../libs/linkValidation');
+const { othersRes } = require('../libs/messages');
+const BadRequest = require('../errors/badRequest');
 
 const createUserValidation = celebrate({
   [Segments.BODY]: Joi.object().keys({
@@ -12,7 +15,8 @@ const createUserValidation = celebrate({
       .max(30),
     avatar: Joi.string()
       .required()
-      .uri(),
+      .regex(regex)
+      .error(new BadRequest(`avatar: ${othersRes.wrongLink}`)),
     email: Joi.string()
       .required()
       .email(),
@@ -50,7 +54,8 @@ const updateAvatarValidation = celebrate({
   [Segments.BODY]: Joi.object().keys({
     avatar: Joi.string()
       .required()
-      .uri()
+      .regex(regex)
+      .error(new BadRequest(`avatar: ${othersRes.wrongLink}`))
   })
 });
 
@@ -62,7 +67,8 @@ const createCardValidation = celebrate({
       .max(30),
     link: Joi.string()
       .required()
-      .uri()
+      .regex(regex)
+      .error(new BadRequest(`link: ${othersRes.wrongLink}`))
   })
 });
 module.exports = {
