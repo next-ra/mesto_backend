@@ -20,10 +20,8 @@ const getCards = (req, res, next) => {
 };
 
 const deleteCard = (req, res, next) => {
-  Card.findByIdAndRemove(req.params.cardId)
-    .then(card => {
-      res.send({ message: messages.cards.cardDeleted, data: card });
-    })
+  Card.deleteOne(req.card)
+    .then(res.send({ message: messages.cards.cardDeleted, data: req.card }))
     .catch(next);
 };
 
