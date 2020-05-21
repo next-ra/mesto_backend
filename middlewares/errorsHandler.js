@@ -2,7 +2,7 @@ const { usersRes, othersRes } = require('../libs/messages');
 
 module.exports = {
   // eslint-disable-next-line no-unused-vars
-  errors: (err, req, res, next) => {
+  errorsHandler: (err, req, res, next) => {
     switch (err.name) {
       case 'CastError':
         res.status(400).send({ message: othersRes.wrongIdFormat });
@@ -10,10 +10,6 @@ module.exports = {
 
       case 'DocumentNotFoundError':
         res.status(404).send({ message: usersRes.notFound });
-        break;
-
-      case 'ValidationError':
-        res.status(400).send({ message: err.message });
         break;
 
       case 'MongoError':
