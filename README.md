@@ -2,7 +2,7 @@
 
 ### v0.1.2
 
-## Проект [mesto-praktikum.ga](https://mesto-praktikum.ga/)
+## Проект [api.mesto-praktikum.ga](https://api.mesto-praktikum.ga/)
 
 ## IP-адрес: http://84.201.143.63/
 
@@ -17,7 +17,7 @@ JS, GIT, node.js, express.js, mongoose, mongoDB
 Скопируйте проект:
 
 ```
-git clone https://github.com/next-ra/project12_backend.git
+git clone https://github.com/next-ra/mesto_backend.git
 ```
 
 Установите зависимости:
