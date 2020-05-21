@@ -1,4 +1,4 @@
-const BadRequest = require('../libs/badRequest');
+const BadRequest = require('../errors/badRequest');
 const { cardsRes } = require('../libs/messages');
 
 module.exports.checkOwner = (req, res, next) => {

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { error401 } = require('../middlewares/errors');
+const { error401 } = require('./errorsHandler');
 const config = require('../config');
 
 module.exports = (req, res, next) => {

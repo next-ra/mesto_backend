@@ -1,6 +1,6 @@
 const Card = require('../models/card');
 const { cardsRes } = require('../libs/messages');
-const NotFound = require('../libs/notFound');
+const NotFound = require('../errors/notFound');
 
 module.exports.checkCard = (req, res, next) => {
   Card.findById(req.params.cardId)
