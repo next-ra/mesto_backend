@@ -1,15 +1,15 @@
-const { messages } = require('../libs/messages');
+const { usersRes, othersRes } = require('../libs/messages');
 
 module.exports = {
   // eslint-disable-next-line no-unused-vars
   errors: (err, req, res, next) => {
     switch (err.name) {
       case 'CastError':
-        res.status(400).send({ message: messages.wrongIdFormat });
+        res.status(400).send({ message: othersRes.wrongIdFormat });
         break;
 
       case 'DocumentNotFoundError':
-        res.status(404).send({ message: messages.users.notFound });
+        res.status(404).send({ message: usersRes.users.notFound });
         break;
 
       case 'ValidationError':
@@ -17,7 +17,7 @@ module.exports = {
         break;
 
       case 'MongoError':
-        res.status(403).send({ message: messages.dupEmail });
+        res.status(403).send({ message: othersRes.dupEmail });
         break;
 
       default:
@@ -27,10 +27,10 @@ module.exports = {
     }
   },
   error404: (req, res, next) => {
-    res.status(404).json({ message: messages.notFound });
+    res.status(404).json({ message: othersRes.notFound });
     next();
   },
   error401: res => {
-    res.status(401).send({ message: messages.users.needAuth });
+    res.status(401).send({ message: usersRes.users.needAuth });
   }
 };

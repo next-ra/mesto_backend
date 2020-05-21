@@ -1,5 +1,5 @@
 const Card = require('../models/card');
-const { messages } = require('../libs/messages');
+const { cardsRes } = require('../libs/messages');
 
 const createCard = (req, res, next) => {
   Card.create({
@@ -8,7 +8,7 @@ const createCard = (req, res, next) => {
     owner: req.user._id
   })
     .then(card =>
-      res.status(201).send({ message: messages.cards.cardCreated, data: card })
+      res.status(201).send({ message: cardsRes.cardCreated, data: card })
     )
     .catch(next);
 };
@@ -21,7 +21,7 @@ const getCards = (req, res, next) => {
 
 const deleteCard = (req, res, next) => {
   Card.deleteOne(req.card)
-    .then(res.send({ message: messages.cards.cardDeleted, data: req.card }))
+    .then(res.send({ message: cardsRes.cardDeleted, data: req.card }))
     .catch(next);
 };
 
@@ -36,7 +36,7 @@ const likeCard = (req, res, next) => {
     .then(card => {
       if (!card) {
         next();
-      } else res.send({ message: messages.cards.like, data: card });
+      } else res.send({ message: cardsRes.like, data: card });
     })
     .catch(next);
 };
@@ -52,7 +52,7 @@ const dislikeCard = (req, res, next) => {
     .then(card => {
       if (!card) {
         next();
-      } else res.json({ message: messages.cards.dislike, data: card });
+      } else res.json({ message: cardsRes.dislike, data: card });
     })
     .catch(next);
 };
