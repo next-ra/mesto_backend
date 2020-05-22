@@ -1,6 +1,6 @@
 ### Проектная работа 15
 
-### v0.1.2
+### v0.1.3
 
 ## Проект [api.mesto-praktikum.ga](https://api.mesto-praktikum.ga/)
 
