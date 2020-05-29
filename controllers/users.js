@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
 const config = require('../config');
-const { messages } = require('../libs/messages');
+const { usersRes } = require('../libs/messages');
 
 const createUser = (req, res, next) => {
   bcrypt
@@ -19,7 +19,7 @@ const createUser = (req, res, next) => {
     )
     .then(user =>
       res.status(201).send({
-        message: messages.users.userCreated,
+        message: usersRes.userCreated,
         _id: user._id,
         name: user.name,
         email: user.email
@@ -40,7 +40,7 @@ const login = (req, res, next) => {
         httpOnly: true,
         sameSite: true
       });
-      res.status(200).send({ message: messages.users.login });
+      res.status(200).send({ message: usersRes.login });
     })
     .catch(next);
 };
@@ -49,7 +49,7 @@ const getUsers = (req, res, next) => {
   User.find({})
     .then(users => {
       if (users.length === 0) {
-        res.send({ message: messages.users.emptyDb });
+        res.send({ message: usersRes.emptyDb });
       } else res.send({ data: users });
     })
 
@@ -74,7 +74,7 @@ const deleteUser = (req, res, next) => {
         next();
       } else
         res.json({
-          message: messages.users.userDeleted
+          message: usersRes.userDeleted
         });
     })
     .catch(err => res.send(err));
@@ -92,7 +92,7 @@ const updateUser = (req, res, next) => {
     .then(user => {
       if (!user) {
         next();
-      } else res.send({ message: messages.users.userUpdated, data: user });
+      } else res.send({ message: usersRes.userUpdated, data: user });
     })
     .catch(next);
 };
@@ -106,7 +106,7 @@ const updateAvatar = (req, res, next) => {
     .then(user => {
       if (!user) {
         next();
-      } else res.send({ message: messages.users.avatarUpdated, data: user });
+      } else res.send({ message: usersRes.avatarUpdated, data: user });
     })
     .catch(next);
 };

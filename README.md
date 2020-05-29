@@ -1,13 +1,14 @@
-### Проектная работа 14
+### Проектная работа 15
 
-### v0.1.0
+### v0.1.3
 
-## Сервер для проекта [Место](https://github.com/next-ra/prj11)
+## Проект [api.mesto-praktikum.ga](https://api.mesto-praktikum.ga/)
+
+## IP-адрес: http://84.201.143.63/
 
 ### Используемые технологии:
 
 JS, GIT, node.js, express.js, mongoose, mongoDB
-
 
 #### Начало работы:
 
@@ -16,7 +17,7 @@ JS, GIT, node.js, express.js, mongoose, mongoDB
 Скопируйте проект:
 
 ```
-git clone https://github.com/next-ra/project12_backend.git
+git clone https://github.com/next-ra/mesto_backend.git
 ```
 
 Установите зависимости:
@@ -39,13 +40,13 @@ npm i
 npm run dev
 ```
 
-### Реализовано: 
+### Реализовано:
 
-#### Создать пользователя 
+#### Создать пользователя
 
 **POST** /signup
-    
-*Content-Type: application/json*
+
+_Content-Type: application/json_
 
 ```
 {
@@ -56,18 +57,20 @@ npm run dev
 "password": "password123"
 }
 ```
+
 #### Авторизация пользователя
 
 **POST** /signin
 
-*Content-Type: application/json*
+_Content-Type: application/json_
 
-``` 
+```
 {
   "email": "Zak@yandex.ru",
   "password": "password123"
 }
 ```
+
 #### Получить список всех пользователей
 
 **GET** /users
@@ -76,46 +79,43 @@ npm run dev
 
 **GET** /users/:id
 
-* **Пример удачного запроса:**
+- **Пример удачного запроса:**
 
-  * **Code:** 200 <br />
-    **Content:** 
-`{ 
-    id : 12, 
-    name : "Zak De La Rocha", 
-    about : "Musician", 
-    avatar: "https://praktikum.yandex.ru/",
-    email: "Zak@yandex.ru",
-    password: "password123"
-}`
- 
-* **Ошибка запроса:**
+  - **Code:** 200 <br />
+    **Content:**
+    `{ id : 12, name : "Zak De La Rocha", about : "Musician", avatar: "https://praktikum.yandex.ru/", email: "Zak@yandex.ru", password: "password123" }`
 
-  * **Code:** 404 NOT FOUND <br />
+- **Ошибка запроса:**
+
+  - **Code:** 404 NOT FOUND <br />
     **Content:** `{ error : "Такого пользователя не существует" }`
 
 #### Обновить данные пользователя
 
-**PATCH** 
+**PATCH**
 users/me
 
-*Content-Type: application/json*
+_Content-Type: application/json_
+
 ```
 {
 "name": "Hermann Hesse",
 "about": "Writer"
 }
 ```
-#### Обновить аватар пользователя 
 
-**PATCH**  /users/me/avatar
+#### Обновить аватар пользователя
 
-*Content-Type: application/json*
+**PATCH** /users/me/avatar
+
+_Content-Type: application/json_
+
 ```
 {
 "avatar" : "https://yandex.ru"
 }
 ```
+
 #### Удалить пользователя по ID
 
 **DELETE** /users/:id
